@@ -64,7 +64,9 @@ We also believe **Alita will be even stronger with LLMs' increasing coding and r
 
 #### Comment7:
 
-We manually test some agent products on GAIA. Some companies may falsely advertise their agent performance.
+We manually test some agent products on GAIA. Some companies may falsely advertise their agent performance. 
+
+Additionally, the GAIA validation dataset contains at least 4-5 incorrect answers, making it impossible to achieve close to 100% accuracy. One simplest way to achieve 100% accuracy on GAIA validation is to integrate a HuggingFace search tool into the agent.
 
 #### Comment8:
 
