@@ -8,7 +8,7 @@ Many general-purpose agents rely heavily on large-scale, manually predefined too
 
 **"Simplicity is the ultimate sophistication."**
 
-🔗Full paper: [https://arxiv.org/pdf/2505.20286](https://arxiv.org/pdf/2505.20286)
+🔗Full paper: [https://arxiv.org/abs/2505.20286](https://arxiv.org/abs/2505.20286)
 
 🔗More Details will be updated here: [https://github.com/CharlesQ9/Alita](https://github.com/CharlesQ9/Alita)
 
