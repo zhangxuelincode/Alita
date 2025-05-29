@@ -14,6 +14,10 @@ Many general-purpose agents rely heavily on large-scale, manually predefined too
 
 ![image.png](Figures/34b630e8-8a21-4e1c-8cbe-7987eb66f07e.png)
 
+
+**If you find the following comments helpful, feel free to repost my [tweet](https://x.com/JiahaoQiu99/status/1927376487285432790) or give a star to this repo.** 
+
+
 #### **Comment 1:**
 
 The reliance on large-scale manually predefined tools and workflows introduces several critical limitations: i) It is impractical, if not impossible, to predefine all the tools required for the wide variety of real-world tasks an agent might encounter **(imcomplete coverage)**; ii) Many complex tasks require agents to creatively compose new tools or leverage existing ones in novel ways while pre-designed workflow and hardcoded components constrain this compositional flexibility and inhibit the development of adaptive behaviors **(limited creativity and flexibility)**; iii) It is not always the case that the interface or environment of different tools are compatible with the agent **(mismatch)**. For example, many useful tools are not written in Python, which makes it difficult, though not entirely impossible, for them to be pre-connected to the mainstream agent frameworks that are primarily written in Python. Together, these challenges ultimately hinder the scalability, adaptability, and generalization of existing generalist agents.
@@ -189,13 +193,13 @@ If the level of MCP abstraction is too high, these MCPs are more likely to have 
 
 If the level of MCP abstraction is too low, these MCPs may **overfit the dataset** and fail to generalize to other tasks.
 
-#### **Comment 20:** Open-Source Plan
+#### Comment 20: Open-Source Plan
 
 We plan to post the code in one month. We hope to see if we can achieve top 1 on the GAIA test using Alita by upgrading the web agent in one month. 
 
 Meanwhile, I encourage the community to try their own implementations during this month. Maybe call it "Open-Alita" :)
 
-i) The implementation of Alita doesn't require heavy engineering. Only I and two excellent undergraduate research assistants co-work on the code.  They don't have any prior knowledge of agent before working on this project. We start doing this project on March, and meet once a week. Until late April, we have meetings more frequently. The rest of the team gives valuable suggestions, help on the idea formulation, paper writing, etc. Without them, Alita cannot achive this performance.
+i) The implementation of Alita doesn't require heavy engineering. Only I and two excellent undergraduate research assistants co-work on the code.  They don't have any prior knowledge or experience with agents before working on this project. We start doing this project on March, and meet once a week. Until late April, we have meetings more frequently. The rest of the team gives valuable suggestions, help on the idea formulation, paper writing, etc. Without them, Alita cannot achive this performance.
 
 ii)Your implementation may be more elegant than ours. I have to admit that there are still many ugly codes and designs in our implementation of the MCP creation component.
 
