@@ -109,7 +109,7 @@ My reply: https://x.com/JiahaoQiu99/status/1927406034903036371
 
 There’s no paper for discussing this. But we take a very close look at the tasks in the test dataset and I am also very familiar with the validation dataset. Omne v0.1, which ranks 1st on GAIA test last year from October 20 to December 5, is also my work.
 
-#### Comment13: Result for GAIA Test 
+#### Comment 13: Result for GAIA Test 
 
 Our accuracy on the GAIA test is 64.12% pass@1, which is 10% lower than validation. We are still trying to upgrade our web agent, which may also be helpful for improvement on GAIA validation.
 
@@ -127,7 +127,7 @@ For this result, we also don't connect any MCPs created from running Alita on GA
 
 
 
-#### Comment14: Success Case Request
+#### Comment 14: Success Case Request
 
 Link: https://github.com/CharlesQ9/Alita/issues/3
 
@@ -139,7 +139,7 @@ Another example is about the video analysis tool. Many tasks in GAIA are about Y
 
 I used to do some Agent for Science projects regarding Chemistry and Biology agents. However, I found that AI4Humanities is far falling behind AI4Science. Also, I haven't fully explored what the logic should be behind doing research in AI for the humanities. There's nearly no community in AI4Humanities. I am quite astonished when I find that a big funding in the humanities at a very top-ranked university is still talking about how to integrate Bert and Knowledge Graph into the humanities. Additionally, humanity's last exam(HLE) only allocates a small portion to the humanities. After careful examination, we find that the quality and the number of questions for the humanities in HLE are not enough. Therefore, we establish a high-quality benchmark in history and also build a "Manus" for history. Though the agent is called HistAgent, it is actually an agent for the humanities because many design principles behind HistAgent are shared among the humanities, and History is also one of the most complex subjects in the humanities. More details can be found in the [paper](https://arxiv.org/abs/2505.20246).
 
-**Follow up question:** It seems that video understanding should rely on specialized large models for video comprehension. Could frame-by-frame understanding be considered an alternative intelligent solution through MCP? Ideally, video understanding should be achieved by invoking the interface of a video understanding model.
+**Follow-up question:** It seems that video understanding should rely on specialized large models for video comprehension. Could frame-by-frame understanding be considered an alternative intelligent solution through MCP? Ideally, video understanding should be achieved by invoking the interface of a video understanding model.
 
 **Reply:** It can be considered a possible solution, although I am unsure whether it will be one of the best long-term solutions. We noticed very early that many manually designed agents are using Gemini. But we don't do it in this way because I just want to give it a try to see if the video understanding module can be replaced by MCP tools designed by agents instead of human developers (though, meanwhile, I found that web browsing still needs to be predefined).
 
@@ -151,7 +151,7 @@ I am really surprised that Alita gives me this solution. **We should not underes
 
 **It is important to do the MCP abstraction(tool abstraction) to make the MCP has some level of generalization.** 
 
-A real case is that I just happened to find that there are bugs in the video agent in HistAgent. We haven't designed this component when we hand the Video_Frame_Extractor_Tool to the team member who are responsible for the video subagent of Histagent. Also, the team member doesn't take a closer look at the code and just connect it to HistAgent. No wonder the accuracy on history video tasks is so low!
+A real case is that I just happened to find that there are bugs in the video agent in HistAgent. We haven't designed this component when we hand the Video_Frame_Extractor_Tool to the team member who are responsible for the video subagent of Histagent. Also, the team member doesn't take a closer look at the code and just connects it to HistAgent. No wonder the accuracy on history video tasks is so low!
 
 ![image.png](Figures/video_analysis_bug.png)
 
@@ -161,25 +161,25 @@ Link: https://arxiv.org/abs/2309.17428
 
 #### Comment 16: MCP Overload(Tool Overload)
 
-In the book "A practical guide to to building agents" by OpenAI, **Tool Overload is a big problem**: "The issue isn’t solely the number of tools, but their similarity   or overlap. Some implementations successfully manage   more than 15 well-defined, distinct tools while others struggle with fewer than 10 overlapping tools. Use multiple agents   if improving tool clarity by providing descriptive names,   clear parameters, and detailed descriptions doesn’t   improve performance."
+In the book "A practical guide to building agents" by OpenAI, **Tool Overload is a big problem**: "The issue isn’t solely the number of tools, but their similarity   or overlap. Some implementations successfully manage   more than 15 well-defined, distinct tools while others struggle with fewer than 10 overlapping tools. Use multiple agents   if improving tool clarity by providing descriptive names,   clear parameters, and detailed descriptions doesn’t   improve performance."
 
-The same issue also applies to MCPs. We refer it as **MCP Overload**. Some MCPs may have overlaps, which leads to the situation that agents struggle in a simple task.
+The same issue also applies to MCPs. We refer to it as **MCP Overload**. Some MCPs may have overlaps, which leads to the situation where agents struggle with a simple task.
 
 Reference: https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf
 
 #### Comment 17: Alita on Humanity's Last Exam
 
-When I come up with the idea on the first day, I already plan to apply it on the Humanity's Last Exam. In my plan, Alita can construct different MCP boxes that will work on different subjects. For Biology/Medicine tasks in HLE, Alita will save Biology/Medicine MCPs. For Chemistry tasks in HLE, Alita will save Chemistry-related MCPs. **With different doamin-specific MCP boxes, Alita will self-evolve into different domain-specific agents.** 
+When I came up with the idea on the first day, I already planned to apply it to the Humanity's Last Exam. In my plan, Alita can construct different MCP boxes that will work on different subjects. For Biology/Medicine tasks in HLE, Alita will save Biology/Medicine MCPs. For Chemistry tasks in HLE, Alita will save Chemistry-related MCPs. **With different domain-specific MCP boxes, Alita will self-evolve into different domain-specific agents.** 
 
 #### Comment 18: Overfit GAIA dataset
 
-If Alita doesn't do the MCP abstraction, those very detailed MCPs wrapped from auto generated tools will definitely overfit GAIA validation.
+If Alita doesn't do the MCP abstraction, those very detailed MCPs wrapped from auto-generated tools will definitely overfit GAIA validation.
 
 Also, even though MCPs generated by Alita on GAIA validation are processed by MCP abstraction, these MCPs may only work on GAIA validation, test, and tasks similar to or easier than GAIA tasks. This problem might not be that severe if it is on domain-specific tasks and the benchmark is ideally comprehensive and well-defined for the specific domain, which is nearly impossible in reality.
 
 **However, Alita still has its own value.** 
 
-First, it provides a paradigm that how an agent can quickly evolve into a super agent that meets the requirements defined by the benchmark dataset. The super agent may not be perfect, but still very useful to some extent. Human developers can further design/refine the super agent with the auto generated MCPs, which saves a lot of time compared to starting from scratch. Also, it may auto generate some MCPs beyond the imagination of human developers.
+First, it provides a paradigm for how an agent can quickly evolve into a superagent that meets the requirements defined by the benchmark dataset. The super agent may not be perfect, but it is still very useful to some extent. Human developers can further design/refine the super agent with the auto-generated MCPs, which saves a lot of time compared to starting from scratch. Also, it may auto-generate some MCPs beyond the imagination of human developers.
 
 Second, it has been proved that auto MCP creation without reuse, Alita still achieves super high performance on GAIA. In the future, as the ability of LLM increases, MCP box should be only used for agent distillation.
 
@@ -191,15 +191,15 @@ If the level of MCP abstraction is too low, these MCPs may **overfit the dataset
 
 #### **Comment 20:** Open-Source Plan
 
-We plan to post the code in one month. We hope to see if we can achieve top 1 on GAIA test using Alita by upgrading the web agent in one month. 
+We plan to post the code in one month. We hope to see if we can achieve top 1 on the GAIA test using Alita by upgrading the web agent in one month. 
 
-Meanwhile, I encourge the community to try their own implementations during this month. Maybe call it "Open-Alita" :)
+Meanwhile, I encourage the community to try their own implementations during this month. Maybe call it "Open-Alita" :)
 
-i) The implementation of Alita doesn't require heavy engineering. Only I and two excellent undergraduate research assistants co-work on the code.  They don't have any prior knowledge of agent before working on this project. We start doing this project on March, and meet once a week. Until late April, we have meetings more frequently. The rest of the team give valuable suggestions, help on the idea formulation, paper writing, etc. Without them, Alita cannot achive this performance.
+i) The implementation of Alita doesn't require heavy engineering. Only I and two excellent undergraduate research assistants co-work on the code.  They don't have any prior knowledge of agent before working on this project. We start doing this project on March, and meet once a week. Until late April, we have meetings more frequently. The rest of the team gives valuable suggestions, help on the idea formulation, paper writing, etc. Without them, Alita cannot achive this performance.
 
-ii)Your implementation may be more elegant than ours. I have to admit that there are still many ugly code and design in our implementation of the MCP creation component.
+ii)Your implementation may be more elegant than ours. I have to admit that there are still many ugly codes and designs in our implementation of the MCP creation component.
 
-iii) Don't limit your imagination. You can also, at least temporarily, surpass OpenAI Deep Research and Manus on GAIA/HLE/etc. I can never imagine that I can lead a small team to beat OpenAI Deep Research on GAIA in February until Alita did it. It is all of a sudden that Alita's performance rapidly increase on GAIA validation at the beginning of May.
+iii) Don't limit your imagination. You can also, at least temporarily, surpass OpenAI Deep Research and Manus on GAIA/HLE/etc. I can never imagine that I can lead a small team to beat OpenAI Deep Research on GAIA in February until Alita did it. It is all of a sudden that Alita's performance rapidly increases on GAIA validation at the beginning of May.
 
 #### Comment 21: To be continued...
 
