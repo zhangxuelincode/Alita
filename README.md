@@ -74,4 +74,134 @@ There’s a gap between the GAIA validation and test datasets. In detail, the GA
 
 #### Comment9:
 
-Maybe it’s time to move forward to HLE, BrowseComp, and xbench.
+Maybe it’s time to **move forward to HLE, BrowseComp, and xbench.**
+
+#### Comment10: 
+
+It is interesting to see that after I posted the tweet, **GAIA leaderboard validation is now history.**
+
+GAIA Leaderboard: https://huggingface.co/spaces/gaia-benchmark/leaderboard
+
+Screenshot for original GAIA leaderboard:
+
+**RIP🕯️🕯️🕯️**
+
+![image.png](Figures/ValidationResult.jpg)
+
+#### Comment11: "Is Figure 1 Pass@3 or Pass@1?"
+
+Question Link: https://x.com/BinWang_Eng/status/1927609241235595288
+
+My reply: https://x.com/JiahaoQiu99/status/1927622412935286941
+
+In the abstract and Table 1 as well as the full paper, we point out that **it is pass@3**. **Our pass@1 is 75.15% on GAIA validation**, which also surpasses OpenAI Deep Research and Manus. However, some companies advertise their products without pointing out that it is pass@N or pass@1. To gain some attention in this environment, we are compelled to aggressively and shamelessly plot Figure 1 in this way. Also, if you take a closer look at comment 7 in [https://github.com/CharlesQ9/Alita](https://t.co/uGH3PHFbnG), you may better understand what I am referring to.  Another point worth noticing is my comment 4 on GitHub. **Alita-generated MCPs, which can be viewed as manually designed by the agent instead of human developers through trial and error, can make pass@1 approach pass@N.**   
+
+After chatting with many people, I also found that some of them have misunderstood how our pass@1 and pass@3 results come out. They are all in the setting where Alita doesn't have any initialized MCPs. **It is not that** Alita did the first task, saved the MCPs generated from the first task, and then continued doing the second task iteratively. It is, of course, not a fair comparison. Instead, we construct the MCP box only after all experiments are done, and pass@1 & pass@3 are calculated. Then we connect the MCP box to Alita, which can make pass@1 approach pass@N. Maybe we can refer to this version as Alita Pro :)
+
+
+#### Comment12: 
+
+Question Link: https://x.com/linyi_yang/status/1927404620898341211
+
+"Regarding 'the GAIA test dataset focuses more on web browsing ability and less on tool use', it seems very interesting. Is there any papers discussing the distinction between validation and test set?"
+
+My reply: https://x.com/JiahaoQiu99/status/1927406034903036371
+
+There’s no paper for discussing this. But we take a very close look at the tasks in the test dataset and I am also very familiar with the validation dataset. Omne v0.1, which ranks 1st on GAIA test last year from October 20 to December 5, is also my work.
+
+#### Comment13: Result for GAIA Test 
+
+Our accuracy on the GAIA test is 64.12% pass@1, which is 10% lower than validation. We are still trying to upgrade our web agent, which may also be helpful for improvement on GAIA validation.
+
+**Updates on May 28th:** https://x.com/JiahaoQiu99/status/1927963619066524099
+
+We upgraded the web agent a little bit today and achieved 66.78% pass@1. We will continue upgrading the web agent, though we are currently not experts in this area. If anyone has great ideas and rich experience in this, feel free to message me.
+
+![image.png](Figures/TestResult.jpg)
+
+**Updates on May 29th: 68.11% pass@1 by continuing upgrading the web agent**
+
+For this result, we also don't connect any MCPs created from running Alita on GAIA validation.
+
+![image.png](Figures/Test0529.jpg)
+
+
+
+#### Comment14: Success Case Request
+
+Link: https://github.com/CharlesQ9/Alita/issues/3
+
+My Reply:
+
+For example, one task in GAIA is to ask, "How many slides in this PowerPoint presentation mention crustaceans?" If the predefined PPT processing tool just converts all contents into text, it may fail to extract the page information and answer the question. However, Alita will dynamically create an appropriate PPT processing tool and wrap up as an MCP that is strong enough for solving this task.
+
+Another example is about the video analysis tool. Many tasks in GAIA are about YouTube video understanding. I observe that some general-purpose agent predefines the video analysis tool as a YouTube transcript crawler tool. However, some of the YouTube video understanding task requires a deeper understanding of the videos. Just reading from the transcript cannot solve the problem. Alita can create an MCP that reads the video frame by frame to solve some harder tasks for video understanding. This is task-specific MCP creation depending on the difficulty of the task. I am not an expert in agent for video understanding, so I cannot imagine how to construct the video understanding tool until Alita tells me this solution. This video understanding component is also reused by another work [On Path to Multimodal Historical Reasoning: HistBench and HistAgent](https://arxiv.org/abs/2505.20246). The code repo is available [here](https://github.com/CharlesQ9/HistAgent). I will also PR this work later this week.
+
+I used to do some Agent for Science projects regarding Chemistry and Biology agents. However, I found that AI4Humanities is far falling behind AI4Science. Also, I haven't fully explored what the logic should be behind doing research in AI for the humanities. There's nearly no community in AI4Humanities. I am quite astonished when I find that a big funding in the humanities at a very top-ranked university is still talking about how to integrate Bert and Knowledge Graph into the humanities. Additionally, humanity's last exam(HLE) only allocates a small portion to the humanities. After careful examination, we find that the quality and the number of questions for the humanities in HLE are not enough. Therefore, we establish a high-quality benchmark in history and also build a "Manus" for history. Though the agent is called HistAgent, it is actually an agent for the humanities because many design principles behind HistAgent are shared among the humanities, and History is also one of the most complex subjects in the humanities. More details can be found in the [paper](https://arxiv.org/abs/2505.20246).
+
+**Follow up question:** It seems that video understanding should rely on specialized large models for video comprehension. Could frame-by-frame understanding be considered an alternative intelligent solution through MCP? Ideally, video understanding should be achieved by invoking the interface of a video understanding model.
+
+**Reply:** It can be considered a possible solution, although I am unsure whether it will be one of the best long-term solutions. We noticed very early that many manually designed agents are using Gemini. But we don't do it in this way because I just want to give it a try to see if the video understanding module can be replaced by MCP tools designed by agents instead of human developers (though, meanwhile, I found that web browsing still needs to be predefined).
+
+I am really surprised that Alita gives me this solution. **We should not underestimate the creativity of agents, which can often go beyond human developers' limited imagination.**
+
+
+
+#### Comment 15: MCP Abstraction(Tool Abstraction)
+
+**It is important to do the MCP abstraction(tool abstraction) to make the MCP has some level of generalization.** 
+
+A real case is that I just happened to find that there are bugs in the video agent in HistAgent. We haven't designed this component when we hand the Video_Frame_Extractor_Tool to the team member who are responsible for the video subagent of Histagent. Also, the team member doesn't take a closer look at the code and just connect it to HistAgent. No wonder the accuracy on history video tasks is so low!
+
+![image.png](Figures/video_analysis_bug.png)
+
+Reference: Yuan, Lifan, Yangyi Chen, Xingyao Wang, Yi R. Fung, Hao Peng, and Heng Ji. "Craft: Customizing llms by creating and retrieving from specialized toolsets." *arXiv preprint arXiv:2309.17428* (2023). 
+
+Link: https://arxiv.org/abs/2309.17428
+
+#### Comment 16: MCP Overload(Tool Overload)
+
+In the book "A practical guide to to building agents" by OpenAI, **Tool Overload is a big problem**: "The issue isn’t solely the number of tools, but their similarity   or overlap. Some implementations successfully manage   more than 15 well-defined, distinct tools while others struggle with fewer than 10 overlapping tools. Use multiple agents   if improving tool clarity by providing descriptive names,   clear parameters, and detailed descriptions doesn’t   improve performance."
+
+The same issue also applies to MCPs. We refer it as **MCP Overload**. Some MCPs may have overlaps, which leads to the situation that agents struggle in a simple task.
+
+Reference: https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf
+
+#### Comment 17: Alita on Humanity's Last Exam
+
+When I come up with the idea on the first day, I already plan to apply it on the Humanity's Last Exam. In my plan, Alita can construct different MCP boxes that will work on different subjects. For Biology/Medicine tasks in HLE, Alita will save Biology/Medicine MCPs. For Chemistry tasks in HLE, Alita will save Chemistry-related MCPs. **With different doamin-specific MCP boxes, Alita will self-evolve into different domain-specific agents.** 
+
+#### Comment 18: Overfit GAIA dataset
+
+If Alita doesn't do the MCP abstraction, those very detailed MCPs wrapped from auto generated tools will definitely overfit GAIA validation.
+
+Also, even though MCPs generated by Alita on GAIA validation are processed by MCP abstraction, these MCPs may only work on GAIA validation, test, and tasks similar to or easier than GAIA tasks. This problem might not be that severe if it is on domain-specific tasks and the benchmark is ideally comprehensive and well-defined for the specific domain, which is nearly impossible in reality.
+
+**However, Alita still has its own value.** 
+
+First, it provides a paradigm that how an agent can quickly evolve into a super agent that meets the requirements defined by the benchmark dataset. The super agent may not be perfect, but still very useful to some extent. Human developers can further design/refine the super agent with the auto generated MCPs, which saves a lot of time compared to starting from scratch. Also, it may auto generate some MCPs beyond the imagination of human developers.
+
+Second, it has been proved that auto MCP creation without reuse, Alita still achieves super high performance on GAIA. In the future, as the ability of LLM increases, MCP box should be only used for agent distillation.
+
+#### Comment 19:  Trade-off for MCP Abstraction
+
+If the level of MCP abstraction is too high, these MCPs are more likely to have overlap, which leads to **MCP Overload**.
+
+If the level of MCP abstraction is too low, these MCPs may **overfit the dataset** and fail to generalize to other tasks.
+
+#### **Comment 20:** Open-Source Plan
+
+We plan to post the code in one month. We hope to see if we can achieve top 1 on GAIA test using Alita by upgrading the web agent in one month. 
+
+Meanwhile, I encourge the community to try their own implementations during this month. Maybe call it "Open-Alita" :)
+
+i) The implementation of Alita doesn't require heavy engineering. Only I and two excellent undergraduate research assistants co-work on the code.  They don't have any prior knowledge of agent before working on this project. We start doing this project on March, and meet once a week. Until late April, we have meetings more frequently. The rest of the team give valuable suggestions, help on the idea formulation, paper writing, etc. Without them, Alita cannot achive this performance.
+
+ii)Your implementation may be more elegant than ours. I have to admit that there are still many ugly code and design in our implementation of the MCP creation component.
+
+iii) Don't limit your imagination. You can also, at least temporarily, surpass OpenAI Deep Research and Manus on GAIA/HLE/etc. I can never imagine that I can lead a small team to beat OpenAI Deep Research on GAIA in February until Alita did it. It is all of a sudden that Alita's performance rapidly increase on GAIA validation at the beginning of May.
+
+#### Comment 21: To be continued...
+
+
+
