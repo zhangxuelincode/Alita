@@ -6,6 +6,10 @@ Alita takes the top spot in GAIA, outperforming OpenAI Deep Research and Manus.
 
 Many general-purpose agents rely heavily on large-scale, manually predefined tools and workflows.  However, we believe that for general AI assistants:
 
+**Alita achieves 75.15% pass@1 and 87.27% pass@3 on GAIA validation and 68.11% pass@1 on GAIA test.**
+
+We are still upgrading our web browsing ability to achieve a higher score on the GAIA test.
+
 **"Simplicity is the ultimate sophistication."**
 
 🔗Full paper: [https://arxiv.org/abs/2505.20286](https://arxiv.org/abs/2505.20286)
