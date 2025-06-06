@@ -12,9 +12,9 @@ Many general-purpose agents rely heavily on large-scale, manually predefined too
 
 🔗More Details will be updated here: [https://github.com/CharlesQ9/Alita](https://github.com/CharlesQ9/Alita)
 
-**Alita achieves 75.15% pass@1 and 87.27% pass@3 on GAIA validation and 71.76% pass@1 on GAIA test.**
+**Alita achieves 75.15% pass@1 and 87.27% pass@3 on GAIA validation and 75.42% pass@1 on GAIA test.**
 
-We are still upgrading our web browsing ability to achieve a higher score on the GAIA test.
+Leaderboard: https://huggingface.co/spaces/gaia-benchmark/leaderboard
 
 ![image.png](Figures/34b630e8-8a21-4e1c-8cbe-7987eb66f07e.png)
 
