@@ -1,4 +1,4 @@
-# Alita: Generalist Agent Enabling Scalable Agentic Reasoning with Minimal Predefinition and Maximal Self-Evolution
+# 静候实现  Alita: Generalist Agent Enabling Scalable Agentic Reasoning with Minimal Predefinition and Maximal Self-Evolution
 
 The GAIA game is over, and Alita is the final answer.
 
